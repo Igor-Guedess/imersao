@@ -10318,3 +10318,119 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::before, body .mfp-w
   margin-left: 0; }
 
 /*# sourceMappingURL=main.css.map */
+
+/* ----- Scroll Zoom Section (Vanilla) ----- */
+.scroll-zoom-section {
+  position: relative;
+  /* Altura total = 100vh (inicial) + (Nº de steps * 100vh)
+    Temos 3 steps, então 100vh + 300vh = 400vh.
+    Se adicionar mais um step, mude para 500vh.
+  */
+  height: 400vh; 
+  background-color: #FFF; /* Cor de fundo da seção */
+}
+
+.scroll-zoom-sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Muito importante! */
+}
+
+.scroll-zoom-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  /* As linhas do flexbox foram removidas */
+}
+
+/* O seletor agora é uma CLASSE */
+.scroll-zoom-img { 
+  /* Estado Inicial da Imagem */
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 12px;
+  
+  /* Transição mais suave para o crossfade */
+  transition: opacity 0.5s ease-in-out; /* MUDANÇA AQUI */
+
+  /* ADICIONE ESTAS 4 LINHAS PARA EMPILHAR AS IMAGENS */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scroll-step {
+  /* Cada step cria 100vh de espaço para rolagem */
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  
+  /* Descomente a linha abaixo para ver os gatilhos */
+  /* border-top: 1px dashed red; */
+}
+
+/* ----- Estilos para o Texto Fixo ----- */
+
+.scroll-zoom-text {
+  /* Posicionamento */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; /* Fica na frente das imagens */
+  
+  /* Estilos (ajuste como quiser) */
+  color: white;
+  text-align: center;
+  
+  /* Previne seleção de texto */
+  pointer-events: none; 
+  user-select: none;
+
+  /* --- ADIÇÕES PARA O BLUR --- */
+  
+  /* 1. O EFEITO DE BLUR */
+  /* Isso aplica o "borrão" em tudo que está atrás do elemento */
+  /* backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); Para compatibilidade com Safari */
+
+  /* 2. UM FUNDO (para o "vidro") */
+  /* Um fundo semi-transparente para dar o efeito de "vidro" */
+  /* background-color: rgba(12, 16, 19, 0.25); Cor escura com 25% de opacidade */
+
+  /* 3. PADDING E BORDA (Opcional, mas recomendado) */
+  /* Isso cria o "box" em volta do texto */
+  /* padding: 25px 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1); Borda sutil */
+}
+
+.scroll-zoom-text h1 {
+    /* Exemplo de estilo - mude como preferir */
+    font-size: 5vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para legibilidade */
+}
+
+.scroll-zoom-text p {
+    /* Exemplo de estilo - mude como preferir */
+    font-size: 1.5vw;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ----- Ajuste no z-index do contêiner da imagem ----- */
+/* (Adicione isso se você não tiver, ou apenas adicione a linha z-index) */
+
+.scroll-zoom-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1; /* Garante que fique atrás do texto */
+}

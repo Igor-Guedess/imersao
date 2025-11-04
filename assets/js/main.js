@@ -710,6 +710,121 @@
 
 	headTextAnimation();
 
+	/*------------------------------------------
+	= INÍCIO DA FUNÇÃO SCROLL ZOOM (COM CROSSFADE)
+	-------------------------------------------*/
+
+	// Espera a PÁGINA INTEIRA (incluindo imagens) carregar
+	$(window).on('load', function () {
+
+		const $section = $('.scroll-zoom-section');
+		
+		// Só executa se a seção existir na página
+		if ($section.length) {
+			
+			// --- 1. Seleção e Configuração das Imagens ---
+			const $imageA = $('#scroll-zoom-image-A');
+			const $imageB = $('#scroll-zoom-image-B');
+			const $triggers = $('.scroll-step');
+
+			// Define qual imagem está "ativa" (na frente)
+			let $activeImage = $imageA;
+			let $inactiveImage = $imageB;
+
+			// --- 2. Pré-carregamento de Imagens ---
+			const imagesToPreload = [];
+			const originalImgSrc = $imageA.data('original-img');
+			if (originalImgSrc) {
+				imagesToPreload.push(originalImgSrc);
+			}
+			
+			$triggers.each(function() {
+				const img = $(this).data('img');
+				if (img) {
+					imagesToPreload.push(img);
+				}
+			});
+
+			imagesToPreload.forEach(function(src) {
+				const img = new Image();
+				img.src = src;
+			});
+			// --- Fim do Pré-carregamento ---
+
+			
+			// --- 3. Cálculos de Posição ---
+			const sectionOffsetTop = $section.offset().top;
+			const scrollableHeight = $section.height() - $(window).height();
+			let lastKnownImg = originalImgSrc;
+
+			// --- 4. Função Principal do Scroll ---
+			function handleScrollAnimation() {
+				let scrollTop = $(window).scrollTop();
+				let scrollProgress = (scrollTop - sectionOffsetTop) / scrollableHeight;
+				let progress = Math.min(1, Math.max(0, scrollProgress));
+
+				// --- Lógica do Zoom (Aplica em AMBAS as imagens) ---
+				if (scrollProgress < 0) {
+					// ESTADO INICIAL: Antes da seção
+					$('.scroll-zoom-img').css({
+						'width': '50%',
+						'height': '50%',
+						'border-radius': '12px'
+					});
+
+				} else if (scrollProgress >= 0 && scrollProgress <= 1) {
+					// ESTADO ATIVO: Durante a animação
+					let newWidth = 50 + (progress * 50); // 50% -> 100%
+					let newHeight = 50 + (progress * 50); // 50% -> 100%
+					let newRadius = 12 - (progress * 12); // 12px -> 0px
+
+					$('.scroll-zoom-img').css({
+						'width': `${newWidth}%`,
+						'height': `${newHeight}%`,
+						'border-radius': `${newRadius}px`
+					});
+
+				} else {
+					// ESTADO FINAL: Depois da seção (scrollProgress > 1)
+					// Isso força a imagem a ficar em 100% se o scroll for muito rápido
+					$('.scroll-zoom-img').css({
+						'width': '100%',
+						'height': '100%',
+						'border-radius': '0px'
+					});
+				}
+
+				// --- Lógica da Troca de Imagem (Crossfade) ---
+				let currentImg = originalImgSrc;
+				$triggers.each(function() {
+					if ($(this).offset().top < (scrollTop + $(window).height() / 2)) {
+						currentImg = $(this).data('img');
+					}
+				});
+
+				if (currentImg !== lastKnownImg) {
+					lastKnownImg = currentImg;
+					
+					// 1. Coloca a nova imagem na imagem inativa (que está atrás)
+					$inactiveImage.attr('src', currentImg);
+					
+					// 2. Faz o fade-in da imagem inativa
+					$inactiveImage.css('opacity', 1);
+					
+					// 3. Faz o fade-out da imagem ativa
+					$activeImage.css('opacity', 0);
+					
+					// 4. Inverte os papéis para a próxima troca
+					let $temp = $activeImage;
+					$activeImage = $inactiveImage;
+					$inactiveImage = $temp;
+				}
+			}
+
+			// "Gruda" a nossa função no evento de scroll do navegador
+			$(window).on('scroll', handleScrollAnimation);
+		}
+	});
 
 })(jQuery);
 

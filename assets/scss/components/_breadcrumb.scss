@@ -1,0 +1,207 @@
+/*----------------------------------------*/
+/*  25. breadcrumb
+/*----------------------------------------*/
+.breadcrumb {
+    margin: 0;
+    z-index: 1;
+    position: relative;
+	min-height: 770px;
+	padding: 237px 0 100px;
+    @include respond(md) {
+        min-height: 720px;
+        padding: 225px 0 100px;
+    }
+    @include respond(xs) {
+        min-height: 620px;
+        padding: 200px 0 100px;
+    }
+    @include respond(sm) {
+        min-height: 650px;
+    }
+    &__content {
+        margin-left: -155px;
+        margin-right: -155px;
+        @include respond(laptop) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        @include respond(lg) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    &__title {
+        font-weight: 400;
+        font-size: 140px;
+        color: #c0cfe3;
+        padding-top: 50px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        @include respond(lg) {
+            font-size: 115px;
+        }
+        @include respond(md) {
+            font-size: 90px;
+        }
+        @include respond(xs) {
+            font-size: 60px;
+            padding-top: 30px;
+        }
+        @include respond(sm) {
+            font-size: 90px;
+        }
+    }
+    &__list {
+        display: inline-block;
+        margin-bottom: 40px;
+        padding: 8px 17px;
+        background: #082443;
+        text-transform: capitalize;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        li {
+            font-size: 20px;
+            font-weight: 500;
+            color: #b5bfca;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            @include respond(xs) {
+                font-size: 18px;
+            }
+            a {
+                color: #b5bfca;
+            }
+            img {
+                margin-right: 9px;
+            }
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: #b5bfca;
+        }
+    }
+    &__text {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #b5bfca;
+        max-width: 656px;
+        margin-top: 5px;
+        @include respond(xs) {
+            font-size: 18px;
+        }
+    }
+    &__shape {
+        .img {
+            z-index: -1;
+            position: absolute;
+            &--1 {
+                right: 0;
+                bottom: 0;
+                @include respond(laptop) {
+                    max-width: 45%;
+                }
+                @include respond(lg) {
+                    max-width: 45%;
+                }
+            }
+            &--2 {
+                top: 26%;
+                right: -94px;
+                z-index: 1;
+                @include respond(md) {
+                    top: 32.5%;
+                    max-width: 13%;
+                }
+                @include respond(xs) {
+                    display: none;
+                }
+            }
+            &--3 {
+                left: 35%;
+                bottom: 0;
+                z-index: -2;
+                @include respond(laptop) {
+                    max-width: 25%;
+                }
+                @include respond(lg) {
+                    max-width: 25%;
+                }
+            }
+        }
+    }
+}
+.breadcrumb-error {
+    min-height: 950px;
+    padding: 487px 0 100px;
+    @include respond(lg) {
+        min-height: 900px;
+        padding: 450px 0 100px;
+    }
+    @include respond(md) {
+        min-height: 700px;
+        padding: 340px 0 100px;
+    }
+    @include respond(xs) {
+        padding: 250px 0 100px;
+        background-position: left;
+    }
+}
+.breadcrumb-error-content {
+    @include respond(xs) {
+        background-position: left;
+    }
+    .breadcrumb__title {
+        font-weight: 400;
+        font-size: 320px;
+        color: #6BA9FF;
+        line-height: 1;
+        padding-top: 0;
+        border-top: 0;
+        text-transform: uppercase;
+        @include respond(lg) {
+            font-size: 280px;
+        }
+        @include respond(md) {
+            font-size: 240px;
+        }
+        @include respond(xs) {
+            font-size: 180px;
+        }
+    }
+    .breadcrumb__text {
+        font-size: 50px;
+        max-width: 100%;
+        padding: 0;
+        margin-top: -5px;
+        color: rgba(255, 255, 255, 0.8);
+        font-family: var(--font-heading);
+        @include respond(lg) {
+            font-size: 40px;
+        }
+        @include respond(md) {
+            font-size: 32px;
+        }
+        @include respond(xs) {
+            line-height: 36px;
+        }
+    }
+    .breadcrumb__btn {
+        position: absolute;
+        right: 80px;
+        bottom: 9%;
+        @include respond(laptop) {
+            bottom: 12%;
+        }
+        @include respond(lg) {
+            bottom: 16%;
+        }
+        @include respond(md) {
+            right: 30px;
+            bottom: 13.5%;
+        }
+        @include respond(xs) {
+            left: 30px;
+            bottom: 22%;
+            right: auto;
+        }
+    }
+}

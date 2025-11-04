@@ -1,0 +1,151 @@
+.cta-bg {
+    min-height: 670px;
+    padding: 164px 0 100px;
+    @include respond(md) {
+        padding: 130px 0 100px;
+    }
+}
+.xb-cta-title {
+    .title {
+        font-size: 100px;
+        line-height: 1.2;
+        color: var(--color-white);
+        text-transform: uppercase;
+        @include respond(lg) {
+            font-size: 80px;
+        }
+        @include respond(md) {
+            font-size: 65px;
+        }
+        @include respond(xs) {
+            font-size: 37px;
+            line-height: 1.3;
+        }
+        @include respond(sm) {
+            font-size: 55px;
+        }
+        &.xb-text-reveal > span {
+            color: var(--color-white);
+	        -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+        }
+    }
+    .cat-btn {
+        position: absolute;
+        right: 23%;
+        top: 7%;
+        @media only screen and (min-width: 1200px) and (max-width: 1300px) {
+            right: 18%;
+        }
+        @include respond(lg) {
+            top: 6%;
+            right: 17%;
+        }
+        @media only screen and (max-width: 1023px) {
+            right: 13%;
+        }
+        @include respond(md) {
+            top: 4%;
+            right: 8%;
+        }
+        @include respond(xs) {
+            bottom: -45%;
+            right: auto;
+            top: auto;
+            left: 0;
+        }
+        @include respond(sm) {
+            bottom: auto;
+            right: 7%;
+            top: 4%;
+            left: auto;
+        }
+    }
+}
+.cta-video {
+    float: right;
+    @include respond(laptop) {
+        float: left;
+        margin-left: 80px;
+    }
+    @include respond(lg) {
+        float: left;
+        margin-left: 60px;
+    }
+    @media only screen and (max-width: 1023px) {
+        margin-left: 90px;
+    }
+    @include respond(md) {
+        float: none;
+        display: flex;
+        justify-content: center;
+        margin-top: 70px;
+        margin-left: 0;
+    }
+    @include respond(xs) {
+        margin-top: 190px;
+        
+    }
+    @include respond(sm) {
+        margin-top: 100px;
+    }
+    a {
+        height: 130px;
+        width: 130px;
+        @include center;
+        z-index: 1;
+        position: relative;
+        background: var(--color-white);
+        @include border-radius(100px);
+        @include respond(lg) {
+            height: 100px;
+            width: 100px;
+        }
+        @include respond(xs) {
+            width: 80px;
+            height: 80px;
+        }
+        &::before,
+        &::after {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            content: '';
+            z-index: -1;
+            border-radius: inherit;
+            background: var(--color-white);
+        }
+        &::before {
+            display: block;
+            animation: pulse-border 1500ms ease-out infinite;
+        }
+        &::after {
+            animation: pulse-border-small 1500ms ease-out infinite;
+        }
+    }
+    .xb-shape {
+        position: absolute;
+        left: -138px;
+        top: -58%;
+        @include respond(md) {
+            left: 21%;
+        }
+        @include respond(xs) {
+            left: 0;
+            top: -85%;
+        }
+        @include respond(sm) {
+            left: 18%;
+            top: -85%;
+        }
+    }
+}
+.cta-shape {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    @include respond(md) {
+        max-width: 15%;
+    }
+}

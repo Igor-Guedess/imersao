@@ -1,0 +1,142 @@
+.main-menu {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    ul {
+        @include d-flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            position: relative;
+            a {
+                z-index: 3;
+                font-size: 18px;
+                font-weight: 500;
+                position: relative;
+                padding: 31px 0;
+                letter-spacing: 0em;
+                text-decoration: none;
+                display: inline-block;
+                @include transition(.3s);
+                text-transform: capitalize;
+                color: var(--color-white);
+                font-family: var(--font-body);
+            }
+            &.menu-item-has-children {
+                & > a {
+                    span::after {
+                        content: '\f107';
+                        font-weight: 500;
+                        margin: 0 0 0 6px;
+                        top: 3px;
+                        position: relative;
+                        color: var(--color-white);
+                        font-family: "Font Awesome 6 Pro";
+                    }
+                }
+                &:hover > .submenu {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0px);
+                }
+            }
+            &:hover > a,
+            &.active > a {
+                color: var(--color-white);
+                & > span::after {
+                    color: var(--color-white);
+                }
+            }
+            .submenu {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+                position: absolute;
+                min-width: 240px;
+                top: 100%;
+                opacity: 0;
+                left: 0;
+                z-index: 3;
+                top: 100%;
+                padding: 30px 20px; 
+                text-align: left;
+                visibility: hidden;
+                background: #fff;
+                @include transition(.3s);
+                @include border-radius(3px);
+                transform: translateY(10px);
+                box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.10);
+                li {
+                    margin-right: 0;
+                    &:not(:last-child) {
+                        margin-bottom: 15px;
+                    }
+                    a {
+                        padding: 0;
+                        display: block;
+                        font-size: 17px;
+                        font-weight: 600;
+                        letter-spacing: 0;
+                        position: relative;
+                        text-transform: capitalize;
+                        @include border-radius(5px);
+                        color: var(--color-heading);
+                        @include transition(.4s);
+                        &:after {
+                            position: absolute;
+                            content: '\f178';
+                            font-family: "Font Awesome 6 Pro";
+                            left: 0;
+                            bottom: 0;
+                            opacity: 0;
+                            font-size: 15px;
+                            font-weight: 500;
+                            display: block;
+                            right: initial;
+                            width: 16px;
+                            @include transition(0.3s);
+                            @include transform(rotate(45deg));
+                        }
+                    }
+                    ul {
+                        left: 100%;
+                        top: 0px;
+                    }
+                    &:hover > a,
+                    &.active > a {
+                        padding-left: 20px;
+                        color: var(--color-primary);
+                        &::after {
+                            opacity: 1;
+                        }
+                        span::after {
+                            color: var(--color-secondary) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.main-menu ul li.menu-last ul.submenu {
+	right: 0;
+	left: auto;
+}
+.main-menu ul li.menu-last ul.submenu ul {
+    right: auto;
+    left: -100%;
+}
+.main-menu ul li ul.submenu .menu-item-has-children > a span::after {
+	position: absolute;
+    top: 0px;
+    right: 15px;
+    content: "\f0d7";
+    font-size: 16px;
+    font-family: 'Font Awesome 6 Pro';
+    @include transition(.3s);
+    transform: rotate(-90deg);
+    color: var(--color-heading);
+}
+

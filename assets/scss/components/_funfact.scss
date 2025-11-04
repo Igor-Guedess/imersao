@@ -1,0 +1,66 @@
+.xb-funfact-item {
+    padding: 30px 30px 5px;
+    border: 1px solid #c0cfe3;
+    background: var(--color-white);
+    @include border-radius(10px);
+    @include transition(.3s);
+    &:hover,
+    &.active {
+        background: var(--color-primary);
+        border: 1px solid var(--color-primary);
+        .xb-item {
+            &--img {
+                opacity: 1;
+                transform: scale(1);
+            }
+            &--sub-title {
+                color: var(--color-white);
+            }
+            &--number {
+                color: var(--color-white);
+            }
+        }
+    }
+    .xb-item {
+        &--sub-title {
+            font-weight: 500;
+            @include transition(.3s);
+            color: var(--color-heading);
+        }
+        &--img {
+            overflow: hidden;
+            opacity: 0;
+            margin: 30px 0 28px;
+            transform: scale(0.8);
+            @include border-radius(10px);
+            @include transition(.3s);
+            @include respond(xs) {
+                height: 200px;
+            }
+            @include respond(sm) {
+                height: 300px;
+            }
+            img {
+                @include respond(xs) {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+        &--number {
+            font-size: 80px;
+            line-height: 70px;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            @include transition(.3s);
+            @media only screen and (min-width: 1200px) and (max-width: 1300px) {
+                font-size: 70px;
+            }
+            @include respond(lg) {
+                font-size: 50px;
+            }
+        }
+    }
+}

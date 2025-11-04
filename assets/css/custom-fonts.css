@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Laginchy';
+    src: url('../fonts/Laginchy-MVJ4x.woff2') format('woff2'),
+    url('../fonts/Laginchy-MVJ4x.woff') format('woff');
+    
+    font-weight: 900;
+    font-style: normal;
+}

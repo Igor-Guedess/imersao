@@ -1,0 +1,116 @@
+.xb-pricing-item {
+    padding: 50px 0;
+    background: #c0cfe3;
+    @include transition(.3s);
+    .xb-item {
+        &--icon {
+            min-height: 100px;
+        }
+        &--title {
+            font-size: 24px;
+            margin: 25px 0 10px;
+        }
+        &--content {
+            font-size: 20px;
+        }
+        &--holder {
+            padding: 0 44px;
+        }
+        &--price {
+            font-size: 44px;
+            margin: 25px 0 35px;
+            padding: 15px 0 5px 44px;
+            border-top: 1px solid #aebfd5;
+            border-bottom: 1px solid #aebfd5;
+        }
+        &--list {
+            li {
+                padding-left: 20px;
+                position: relative;
+                &:not(:last-child) {
+                    margin-bottom: 14px;
+                }
+                &::before {
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 3px;
+                    width: 3px;
+                    @include border-radius(100px);
+                    background: var(--color-default);
+                }
+            }
+        }
+        &--btn {
+            margin-top: 35px;
+            display: inline-block;
+        }
+    }
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+.pr-btn {
+    .yacht-btn {
+        display: inline-flex;
+    }
+    @include respond(xs) {
+        text-align: center;
+    }
+}
+.pr-feature-content {
+    margin-left: -30px;
+    @include respond(lg) {
+        margin-left: 0;
+    }
+}
+.pr-feature-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 45px;
+    margin: 65px 0 75px;
+    @include respond(xs) {
+        justify-content: center;
+    }
+}
+.pr-feature-item {
+    @include respond(xs) {
+        text-align: center;
+    }
+    .xb-item {
+        &--title {
+            font-size: 24px;
+            line-height: 32px;
+            margin-top: 40px;
+            max-width: 191px;
+            text-transform: uppercase;
+            color: var(--color-heading);
+            a {
+                color: currentColor;
+            }
+        }
+    }
+}
+.fea-sec-title {
+    gap: 206px !important;
+}
+.pr-feature-shape {
+    .shape {
+        z-index: -1;
+        position: absolute;
+        @include respond(md) {
+            display: none;
+        }
+        &--1 {
+            bottom: 24%;
+            left: -87px;
+        }
+        &--2 {
+            right: -105px;
+            bottom: 30%;
+        }
+    }
+}

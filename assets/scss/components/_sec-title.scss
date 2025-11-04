@@ -1,0 +1,100 @@
+.sec-title {
+    .title {
+        font-size: 54px;
+        font-weight: 400;
+        line-height: 70px;
+        display: block;
+        letter-spacing: 0em;
+        color: var(--color-heading);
+        text-transform: uppercase;
+        @include respond(lg) {
+            font-size: 48px;
+            line-height: 65px;
+        }
+        @include respond(xs) {
+            font-size: 32px;
+            line-height: 44px;
+        }
+    }
+    .sub-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 23px;
+        padding: 7px 20px;
+        display: inline-block;
+        background: transparent;
+        text-transform: capitalize;
+        @include border-radius(4px);
+        color: rgba(10, 43, 80, 0.8);
+        border: 1px solid rgba(10, 43, 80, 0.1);
+        @include respond(xs) {
+            font-size: 16px;
+            
+        }
+    }
+    &--white {
+        .title {
+            color: var(--color-white);
+        }
+        .sub-title {
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+    &--two {
+        .sub-title {
+            border: none;
+            gap: 14px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 23px;
+            @include respond(xs) {
+                gap: 10px;
+            }
+            img {
+                @include respond(xs) {
+                    max-width: 20%;
+                }
+            }
+        }
+        .title {
+            @include respond(xs) {
+                font-size: 29px;
+            }
+        }
+        .content {
+            line-height: 24px;
+            margin-top: 13px;
+            display: inline-block;
+            color: rgba(10, 43, 80, 0.7);
+        }
+    }
+}
+.vertical-sec-title {
+    gap: 154px;
+    display: flex;
+    align-items: start;
+    @include respond(md) {
+        display: inline-block;
+    }
+    .title {
+        flex-grow: 1;
+        flex-basis: 0;
+        transform: translateY(-10px);
+        @include respond(md) {
+            transform: translateY(0);
+        }
+    }
+}
+.xb-text-reveal > span {
+	position: relative;
+	display: inline;
+	color: var(--color-heading);
+	-webkit-text-fill-color: rgba(10, 43, 80, 0.5);
+	-webkit-background-clip: text;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-size: 0% 100%;
+	will-change: background-size;
+}

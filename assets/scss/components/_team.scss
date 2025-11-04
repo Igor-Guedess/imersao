@@ -1,0 +1,128 @@
+.xb-team-item {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        position: absolute;
+        content: '';
+        height: 84%;
+        width: 0;
+        top: 30px;
+        left: 50%;
+        z-index: 1;
+        opacity: 0;
+        @include transition(.3s);
+        transform: translateX(-50%);
+        background: rgba(10, 43, 80, 0.9);
+    }
+    .xb-item {
+        &--img {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        &--holder {
+            position: absolute;
+            z-index: 2;
+        }
+        &--name {
+            opacity: 0;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--color-white);
+            text-transform: uppercase;
+            @include transition(.3s);
+            transform: translateY(20px);
+            @include respond(md) {
+                font-size: 18px;
+            }
+            @include respond(xs) {
+                font-size: 20px;
+            }
+        }
+        &--desig {
+            opacity: 0;
+            font-weight: 500;
+            font-size: 16px;
+            display: block;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            @include transition(.3s);
+            transform: translateY(20px);
+            @include respond(md) {
+                font-size: 14px;
+            }
+            @include respond(xs) {
+                font-size: 16px;
+            }
+        }
+        &--link {
+            gap: 4px;
+            opacity: 0;
+            margin-top: 30px;
+            display: inline-flex;
+            @include transition(.3s);
+            transform: translateY(20px);
+            li {
+                a {
+                    font-weight: 500;
+                    font-size: 16px;
+                    padding: 5px 14px;
+                    color: var(--color-white);
+                    text-transform: uppercase;
+                    @include border-radius(50px);
+                    @include transition(.3s);
+                    border: 1px solid rgba(255, 255, 255, 0.16);
+                    @include respond(md) {
+                        font-size: 14px;
+                    }
+                    @include respond(xs) {
+                        font-size: 16px;
+                    }
+                    &:hover {
+                        background: var(--color-primary);
+                    }
+                }
+                &:first-child {
+                    a {
+                       padding: 5px 10px; 
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        &::before {
+            opacity: 1;
+            width: 80%;
+        }
+        .xb-item {
+            &--name,
+            &--desig,
+            &--link {
+                opacity: 1;
+                transition-delay: .1s;
+                transform: translateY(0);
+            }
+            &--desig {
+                transition-delay: .2s;
+            }
+            &--link {
+                transition-delay: .3s;
+                
+            }
+        }
+    }
+}
+.xb-team-slider {
+    @include respond(xs) {
+        text-align: center;
+    }
+}
+.xb-team-wrapper {
+    @include respond(md) {
+        text-align: center;
+    }
+}

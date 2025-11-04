@@ -1,0 +1,186 @@
+.project-slide-item {
+    position: relative;
+    .xb-item {
+        &--img {
+            opacity: 0;
+            text-align: center;
+            @include transition(.3s);
+            transform: translateY(100px);
+        }
+        &--project-btn {
+            opacity: 0;
+            @include transition(.3s);
+            transform: translateY(20px);
+        }
+        &--content-item {
+            gap: 70px;
+            opacity: 0;
+            margin-top: 25px;
+            text-align: center;
+            justify-content: center;
+            transform: translateY(20px);
+            @include transition(.3s);
+            @include respond(xs) {
+                gap: 20px;
+            }
+        }
+        &--title {
+            font-size: 34px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            @include respond(md) {
+                font-size: 30px;
+            }
+            @include respond(xs) {
+                font-size: 25px;
+            }
+        }
+        &--meta {
+            gap: 20px;
+            display: inline-flex;
+            li {
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: rgba(255, 255, 255, 0.7);
+                @include respond(xs) {
+                    font-size: 14px;
+                }
+                &:not(:last-child) {
+                    padding-right: 18px;
+                    border-right: 1px solid rgba(255, 255, 255, 0.2);
+                }
+                img {
+                    @include respond(xs) {
+                        max-width: 20%;
+                    }
+                }
+            }
+        }
+    }
+    .project-heading {
+        position: absolute;
+        left: 50%;
+        top: 5%;
+        z-index: -1;
+        font-size: 200px;
+        color: #1a416c;
+        letter-spacing: 0;
+        text-align: center;
+        opacity: 0;
+        white-space: nowrap;
+        @include transition(.3s);
+        transform: translateX(-50%);
+        @include respond(laptop) {
+            font-size: 145px;
+        }
+        @include respond(lg) {
+            font-size: 100px;
+        }
+        @include respond(md) {
+            font-size: 80px;
+        }
+        @include respond(xs) {
+            font-size: 35px;
+        }
+        @include respond(sm) {
+            font-size: 50px;
+        }
+    }
+}
+.project-slide-btn {
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 43%;
+        height: 50px;
+        width: 50px;
+        z-index: 1;
+        background: transparent;
+        @include transition(.3s);
+        @include border-radius(100px);
+        border:  1px solid rgba(255, 255, 255, 0.12);
+        @include respond(md) {
+            top: 25%;
+        }
+        @include respond(xs) {
+            width: 30px;
+            height: 30px;
+            top: 20%;
+        }
+        &::after {
+            display: none;
+        }
+        svg {
+            @include respond(xs) {
+                max-width: 40%;
+            }
+            path {
+               @include transition(.3s);
+           }
+        }
+        &:hover {
+            background: var(--color-white);
+            border: 1px solid var(--color-white);
+            svg path {
+                fill: var(--color-heading);
+            }
+        }
+    }
+    .swiper-button-next {
+        right: 15.5%;
+        @include respond(laptop) {
+            right: 3.5%;
+        }
+        @media only screen and (min-width: 1200px) and (max-width: 1300px) {
+            right: 0%;
+        }
+        @include respond(lg) {
+            right: 0%;
+        }
+    }
+    .swiper-button-prev {
+        left: 15.5%;
+        @include respond(laptop) {
+            left: 3.5%;
+        }
+        @media only screen and (min-width: 1200px) and (max-width: 1300px) {
+            left: 0%;
+        }
+        @include respond(lg) {
+            left: 0%;
+        }
+    }
+}
+.project-slider .swiper-slide-active {
+    .project-slide-item {
+        .xb-item {
+            &--img {
+                opacity: 1;
+                transform: translateY(0);
+                @include respond(lg) {
+                    text-align: center;
+                }
+                img {
+                    @include respond(lg) {
+                        max-width: 80%;
+                    }
+                }
+            }
+            &--content-item {
+                opacity: 1;
+                transition-delay: .1s;
+                transform: translateY(0);
+            }
+            &--project-btn {
+                opacity: 1;
+                transition-delay: .2s;
+                transform: translateY(0);
+            }
+        }
+        .project-heading {
+            opacity: 1;
+            // transform: translateX(-50%);
+        }
+    }
+}

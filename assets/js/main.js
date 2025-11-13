@@ -710,28 +710,18 @@
 
 	headTextAnimation();
 
-	/*------------------------------------------
-	= INÍCIO DA FUNÇÃO SCROLL ZOOM (COM CROSSFADE)
-	-------------------------------------------*/
-
-	// Espera a PÁGINA INTEIRA (incluindo imagens) carregar
 	$(window).on('load', function () {
 
 		const $section = $('.scroll-zoom-section');
 		
-		// Só executa se a seção existir na página
 		if ($section.length) {
-			
-			// --- 1. Seleção e Configuração das Imagens ---
 			const $imageA = $('#scroll-zoom-image-A');
 			const $imageB = $('#scroll-zoom-image-B');
 			const $triggers = $('.scroll-step');
 
-			// Define qual imagem está "ativa" (na frente)
 			let $activeImage = $imageA;
 			let $inactiveImage = $imageB;
 
-			// --- 2. Pré-carregamento de Imagens ---
 			const imagesToPreload = [];
 			const originalImgSrc = $imageA.data('original-img');
 			if (originalImgSrc) {
@@ -749,23 +739,17 @@
 				const img = new Image();
 				img.src = src;
 			});
-			// --- Fim do Pré-carregamento ---
 
-			
-			// --- 3. Cálculos de Posição ---
 			const sectionOffsetTop = $section.offset().top;
 			const scrollableHeight = $section.height() - $(window).height();
 			let lastKnownImg = originalImgSrc;
 
-			// --- 4. Função Principal do Scroll ---
 			function handleScrollAnimation() {
 				let scrollTop = $(window).scrollTop();
 				let scrollProgress = (scrollTop - sectionOffsetTop) / scrollableHeight;
 				let progress = Math.min(1, Math.max(0, scrollProgress));
 
-				// --- Lógica do Zoom (Aplica em AMBAS as imagens) ---
 				if (scrollProgress < 0) {
-					// ESTADO INICIAL: Antes da seção
 					$('.scroll-zoom-img').css({
 						'width': '50%',
 						'height': '50%',
@@ -773,10 +757,9 @@
 					});
 
 				} else if (scrollProgress >= 0 && scrollProgress <= 1) {
-					// ESTADO ATIVO: Durante a animação
-					let newWidth = 50 + (progress * 50); // 50% -> 100%
-					let newHeight = 50 + (progress * 50); // 50% -> 100%
-					let newRadius = 12 - (progress * 12); // 12px -> 0px
+					let newWidth = 50 + (progress * 50);
+					let newHeight = 50 + (progress * 50);
+					let newRadius = 12 - (progress * 12);
 
 					$('.scroll-zoom-img').css({
 						'width': `${newWidth}%`,
@@ -785,8 +768,6 @@
 					});
 
 				} else {
-					// ESTADO FINAL: Depois da seção (scrollProgress > 1)
-					// Isso força a imagem a ficar em 100% se o scroll for muito rápido
 					$('.scroll-zoom-img').css({
 						'width': '100%',
 						'height': '100%',
@@ -794,7 +775,6 @@
 					});
 				}
 
-				// --- Lógica da Troca de Imagem (Crossfade) ---
 				let currentImg = originalImgSrc;
 				$triggers.each(function() {
 					if ($(this).offset().top < (scrollTop + $(window).height() / 2)) {
@@ -805,27 +785,64 @@
 				if (currentImg !== lastKnownImg) {
 					lastKnownImg = currentImg;
 					
-					// 1. Coloca a nova imagem na imagem inativa (que está atrás)
 					$inactiveImage.attr('src', currentImg);
-					
-					// 2. Faz o fade-in da imagem inativa
 					$inactiveImage.css('opacity', 1);
-					
-					// 3. Faz o fade-out da imagem ativa
 					$activeImage.css('opacity', 0);
 					
-					// 4. Inverte os papéis para a próxima troca
 					let $temp = $activeImage;
 					$activeImage = $inactiveImage;
 					$inactiveImage = $temp;
 				}
 			}
-
-			// "Gruda" a nossa função no evento de scroll do navegador
+			
 			$(window).on('scroll', handleScrollAnimation);
 		}
 	});
 
+
+	/*------------------------------------------
+		Fixed Background Image Effect
+		- Quando a última imagem do scroll-zoom ocupar a tela
+		- Fixar a imagem e deixar a section feature passar por cima
+		- Adicionar efeito parallax na imagem fixa
+	-------------------------------------------*/
+	$(document).ready(function() {
+		const scrollSection = $('.scroll-zoom-section');
+		const featureSection = $('.scroll-zoom-section + section.feature-background');
+		const stickyWrapper = scrollSection.find('.scroll-zoom-sticky-wrapper');
+		
+		if (scrollSection.length && featureSection.length) {
+			$(window).on('scroll', function() {
+				const scrollTop = $(window).scrollTop();
+				const sectionTop = scrollSection.offset().top;
+				const sectionHeight = scrollSection.outerHeight();
+				const sectionEnd = sectionTop + sectionHeight;
+				const featureTop = featureSection.offset().top;
+				const featureHeight = featureSection.outerHeight();
+				const featureEnd = featureTop + featureHeight;
+				const windowHeight = $(window).height();
+				
+				// Ativar quando a última imagem ocupar a tela (95% da section)
+				// Desativar quando passar do fim da feature section
+				if (scrollTop >= sectionEnd - windowHeight && scrollTop < featureEnd) {
+					scrollSection.addClass('image-fixed');
+					
+					// Calcular o parallax
+					// Quanto mais rolar, mais a imagem sobe (efeito de centralização)
+					const scrollProgress = (scrollTop - (sectionEnd - windowHeight)) / featureHeight;
+					const parallaxOffset = scrollProgress * -50;
+					
+					stickyWrapper.css('transform', `translateY(${parallaxOffset}%)`);
+				} else {
+					scrollSection.removeClass('image-fixed');
+					stickyWrapper.css('transform', '');
+				}
+			});
+		}
+	});
+
 })(jQuery);
+
+
 
 

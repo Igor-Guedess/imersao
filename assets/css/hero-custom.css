@@ -1,0 +1,337 @@
+/* Custom Hero Overlay Styles */
+
+/* Centralizar apenas os menus de navegação */
+.header-style--two .main-menu__wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 991px) {
+    .header-style--two .main-menu__wrap {
+        position: static;
+        transform: none;
+    }
+}
+
+/* Aumentar especificidade para sobrescrever main.css sem !important */
+.hero.hero-style.hero-style--two {
+    position: relative;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero.hero-style.hero-style--two .xb-video-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero.hero-style.hero-style--two .xb-video-wrap::after {
+    
+
+}
+
+.hero.hero-style.hero-style--two .background_video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hero.hero-style.hero-style--two .background_video video,
+.hero.hero-style.hero-style--two .responsive-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero.hero-style.hero-style--two .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.hero.hero-style.hero-style--two .xb-hero_content {
+    text-align: center;
+}
+
+.hero.hero-style.hero-style--two .hero-meta {
+    margin-bottom: 1rem;
+}
+
+.hero.hero-style.hero-style--two .hero-meta p {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.hero.hero-style.hero-style--two .hero-meta span {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.hero.hero-style.hero-style--two .hero-meta i {
+    margin-right: 8px;
+}
+
+.hero.hero-style.hero-style--two .xb-hero_content .title {
+    font-size: 80px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    overflow: visible;
+}
+
+.hero.hero-style.hero-style--two .xb-content {
+    color: white;
+    font-size: 20px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.hero.hero-style.hero-style--two .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.hero.hero-style.hero-style--two .hero-progress-bar {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.hero.hero-style.hero-style--two .hero-progress-bar > div {
+    background: rgba(255,255,255,0.3);
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.hero.hero-style.hero-style--two .hero-progress-bar > div > div {
+    background: var(--color-primary);
+    height: 100%;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.hero.hero-style.hero-style--two .hero-progress-bar p {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.hero.hero-style.hero-style--two .btn-ticket:hover {
+    background: white;
+    color: #0a2b50;
+}
+
+/* Progress bar gradient */
+.progress-bar-gradient {
+    background: linear-gradient(to right, #ff5722 0%, #2196f3 90%, #666 90%);
+    height: 100%;
+    width: 90%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+    .hero.hero-style.hero-style--two .xb-hero_content .title {
+        font-size: 56px;
+    }
+    
+    .hero.hero-style.hero-style--two .container {
+        padding-top: 150px;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero.hero-style.hero-style--two .xb-hero_content .title {
+        font-size: 42px;
+    }
+    
+    .hero.hero-style.hero-style--two .xb-content {
+        font-size: 18px;
+    }
+    
+    .hero.hero-style.hero-style--two .hero-meta p {
+        font-size: 16px;
+    }
+    
+    .hero.hero-style.hero-style--two .container {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero.hero-style.hero-style--two .xb-hero_content .title {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    .hero.hero-style.hero-style--two .hero-meta p span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .hero.hero-style.hero-style--two .xb-content {
+        font-size: 16px;
+    }
+    
+    .hero.hero-style.hero-style--two .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero.hero-style.hero-style--two .thm-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero.hero-style.hero-style--two .xb-hero_content .title {
+        font-size: 28px;
+    }
+    
+    .hero.hero-style.hero-style--two .container {
+        padding-top: 100px;
+    }
+}
+
+/* Marquee Section Styles */
+.hero-marquee {
+    background-color: var(--color-secondary);
+    padding: 10px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero-marquee .yr-feature-text {
+    position: relative;
+    bottom: auto;
+}
+
+.hero-marquee .yr-feature-text .item {
+    margin-right: 60px;
+}
+
+.hero-marquee .yr-feature-text .item h2 {
+    color: var(--color-white);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 1;
+}
+
+@media (max-width: 1199px) {
+    .hero-marquee .yr-feature-text .item h2 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-marquee {
+        padding: 20px 0;
+    }
+    
+    .hero-marquee .yr-feature-text .item {
+        margin-right: 60px;
+    }
+    
+    .hero-marquee .yr-feature-text .item h2 {
+        font-size: 28px;
+    }
+}
+
+/* ===================================
+   Fixed Background Image Effect
+   =================================== */
+
+/* Quando a última imagem ocupar a tela, fixar ela */
+.scroll-zoom-section.image-fixed .scroll-zoom-sticky-wrapper {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0 !important;
+    transition: transform 0.1s ease-out;
+}
+
+.scroll-zoom-section.image-fixed .scroll-zoom-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll-zoom-section.image-fixed .scroll-zoom-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* A section feature passa por cima da imagem fixa */
+.scroll-zoom-section.image-fixed + section.feature-background {
+    position: relative;
+    z-index: 1;
+}
+
+/* Garantir que o conteúdo da feature section fique visível */
+.scroll-zoom-section.image-fixed + section.feature-background .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Mudar cor dos textos para branco */
+.scroll-zoom-section.image-fixed + section.feature-background .title,
+.scroll-zoom-section.image-fixed + section.feature-background .xb-item--title {
+    color: var(--color-white) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+}
+
+/* Configurar o efeito de revelação para funcionar com branco */
+.scroll-zoom-section.image-fixed + section.feature-background .xb-text-reveal {
+    color: var(--color-white) !important;
+}
+
+.scroll-zoom-section.image-fixed + section.feature-background .xb-text-reveal > span {
+    color: var(--color-white) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.3) !important;
+    background-image: linear-gradient(var(--color-white), var(--color-white)) !important;
+}
+
+/* Corrigir o posicionamento do marquee para ficar no final da section */
+.scroll-zoom-section.image-fixed + section.feature-background .yr-feature-text {
+    position: absolute;
+    bottom: 38px;
+    left: 0;
+    z-index: 2;
+}

@@ -510,7 +510,7 @@
 	/*------------------------------------------
 	= marquee
 	-------------------------------------------*/
-	$('.marquee-left').marquee({
+	$('.marquee-left').not('.marquee-team').marquee({
 		speed: 30,
 		gap: 0,
 		delayBeforeStart: 0,
@@ -519,6 +519,17 @@
 		pauseOnHover: false,
 		startVisible: true,
 	});	
+
+	// team com pause on hover
+	$('.marquee-team').marquee({
+		speed: 80,
+		gap: 0,
+		delayBeforeStart: 0,
+		direction: 'left',
+		duplicated: true,
+		pauseOnHover: true,
+		startVisible: true,
+	});		
 
 	/*----------------------------
 	= countdown with date & time
